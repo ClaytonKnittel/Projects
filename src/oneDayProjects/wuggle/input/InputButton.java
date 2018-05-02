@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
 
-import oneDayProjects.wuggle.Dice;
-import oneDayProjects.wuggle.ValidChoice;
+import oneDayProjects.wuggle.game.Dice;
+import oneDayProjects.wuggle.game.ValidChoice;
 import oneDayProjects.wuggle.graphics.Drawable;
 import oneDayProjects.wuggle.graphics.Drawer;
 

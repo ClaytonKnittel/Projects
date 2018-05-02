@@ -1,4 +1,4 @@
-package oneDayProjects.wuggle;
+package oneDayProjects.wuggle.game;
 
 import java.awt.Color;
 import java.awt.Graphics;

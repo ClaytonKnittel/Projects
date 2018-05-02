@@ -1,4 +1,4 @@
-package oneDayProjects.wuggle;
+package oneDayProjects.wuggle.graphics;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -6,9 +6,6 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
 import java.util.LinkedList;
-
-import oneDayProjects.wuggle.graphics.Drawable;
-import oneDayProjects.wuggle.graphics.Drawer;
 
 public class WordList implements Drawable {
 

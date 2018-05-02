@@ -1,4 +1,4 @@
-package oneDayProjects.wuggle;
+package oneDayProjects.wuggle.game;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,7 @@ import oneDayProjects.wuggle.graphics.Drawer;
 import oneDayProjects.wuggle.graphics.ScoreKeeper;
 import oneDayProjects.wuggle.graphics.Screen;
 import oneDayProjects.wuggle.graphics.Timer;
+import oneDayProjects.wuggle.graphics.WordList;
 import oneDayProjects.wuggle.input.Action;
 import oneDayProjects.wuggle.input.ActionMap;
 import oneDayProjects.wuggle.input.InputButton;

@@ -7,8 +7,7 @@ import java.awt.image.BufferStrategy;
 import java.util.LinkedList;
 import java.util.List;
 
-import oneDayProjects.wuggle.Dice;
-import oneDayProjects.wuggle.WordList;
+import oneDayProjects.wuggle.game.Dice;
 import oneDayProjects.wuggle.input.InputButton;
 
 public class Drawer {

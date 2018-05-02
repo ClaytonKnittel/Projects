@@ -1,4 +1,4 @@
-package oneDayProjects.wuggle;
+package oneDayProjects.wuggle.game;
 
 import java.lang.reflect.Array;
 import java.util.LinkedList;

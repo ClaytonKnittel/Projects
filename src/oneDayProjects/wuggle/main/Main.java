@@ -1,6 +1,6 @@
 package oneDayProjects.wuggle.main;
 
-import oneDayProjects.wuggle.WUggle;
+import oneDayProjects.wuggle.game.WUggle;
 import oneDayProjects.wuggle.graphics.Screen;
 
 public class Main implements Runnable {
