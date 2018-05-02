@@ -27,8 +27,6 @@ public class WUggle {
 	private ActionMap input;
 	private Screen screen;
 	private Trie<String> dictionary;
-	
-	public static final boolean bigDictionary = true;
 
 	/**
 	 * A WUggle game
@@ -72,10 +70,7 @@ public class WUggle {
 		
 		FileInputStream s = null;
 		try {
-			if (bigDictionary)
-				s = new FileInputStream(new File("datafiles/dictionary/words.txt"));
-			else
-				s = new FileInputStream(new File("datafiles/dictionary/shortWords.txt"));
+			s = new FileInputStream(new File("src/libraries/words.txt"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
