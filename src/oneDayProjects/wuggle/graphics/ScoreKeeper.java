@@ -14,13 +14,24 @@ public class ScoreKeeper implements Drawable {
 	
 	private int id;
 	
+	private String pref;
+	
 	public ScoreKeeper() {
+		this("Score: ");
+	}
+	
+	public ScoreKeeper(String pref) {
+		this.pref = pref;
 		score = 0;
 		id = idNum++;
 	}
 	
 	public void play(String s) {
 		score += score(s);
+	}
+	
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	public int id() {
@@ -56,7 +67,7 @@ public class ScoreKeeper implements Drawable {
 		if (bb == null)
 			return;
 		g.setColor(color);
-		Drawer.drawText(g, "Score: " + score + "", (float) bb.getMinX(), (float) bb.getMinY(), (float) bb.getWidth(), (float) bb.getHeight());
+		Drawer.drawText(g, pref + score, (float) bb.getMinX(), (float) bb.getMinY(), (float) bb.getWidth(), (float) bb.getHeight());
 	}
 	
 }

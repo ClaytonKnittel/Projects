@@ -36,15 +36,17 @@ public class Drawer {
 		layouts.clear();
 		layouts.add(Dice.class, new Rectangle2D.Float(0, Screen.topBorder + h / 7, w * 3 / 4, h * 6 / 7));
 		layouts.add(InputButton.class, new Rectangle2D.Float(0, Screen.topBorder, w * 3 / 4, h / 7));
-		layouts.add(ScoreKeeper.class, new Rectangle2D.Float(0, Screen.topBorder, w * 3 / 16, h / 7));
+		layouts.add(ScoreKeeper.class, new Rectangle2D.Float(0, Screen.topBorder, w * 3 / 16, h / 7), 0);
 		layouts.add(WordList.class, new Rectangle2D.Float(w * 3 / 4, Screen.topBorder, w / 4, h), 0);
 		layouts.add(Timer.class, new Rectangle2D.Float(w * 9 / 16, Screen.topBorder, w * 3 / 16, h / 7));
 	}
 	
 	public void initEndScreen() {
 		layouts.clear();
-		layouts.add(WordList.class, new Rectangle2D.Float(w * 1 / 2, Screen.topBorder, w / 2, h), 0);
-		layouts.add(WordList.class, new Rectangle2D.Float(0, Screen.topBorder, w / 2, h), 1);
+		layouts.add(WordList.class, new Rectangle2D.Float(w * 1 / 2, Screen.topBorder + h / 9, w / 2, h * 8 / 9), 0);
+		layouts.add(WordList.class, new Rectangle2D.Float(0, Screen.topBorder + h / 9, w / 2, h * 8 / 9), 1);
+		layouts.add(ScoreKeeper.class, new Rectangle2D.Float(w * 1 / 2, Screen.topBorder, w / 2, h / 9), 1);
+		layouts.add(ScoreKeeper.class, new Rectangle2D.Float(0, Screen.topBorder, w / 2, h / 9), 2);
 	}
 	
 	public Rectangle2D.Float boundingBox(Drawable d) {

@@ -21,7 +21,7 @@ public class Main implements Runnable {
 			Thread.currentThread().setPriority(10);
 			game.render();
 			try {
-				Thread.sleep(10);
+				Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -16,7 +16,7 @@ public class WordList implements Drawable {
 			new Color(100, 100, 200), null, new Color(100, 100, 100), null, null, null, null, null,
 			new Color(10, 20, 80) };
 
-	private final int border = 7;
+	private final int border = 10;
 	private final int cushion = 4;
 	private final int wordSeparation = 4;
 
@@ -56,6 +56,13 @@ public class WordList implements Drawable {
 				break;
 		}
 		return max;
+	}
+	
+	public int total() {
+		int total = 0;
+		for (WordScore w : words)
+			total += w.score;
+		return total;
 	}
 
 	public void updateMaxScrollDist(int height, int textHeight) {

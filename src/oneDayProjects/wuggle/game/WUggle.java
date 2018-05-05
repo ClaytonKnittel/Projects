@@ -1,5 +1,6 @@
 package oneDayProjects.wuggle.game;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ import oneDayProjects.wuggle.graphics.WordList;
 import oneDayProjects.wuggle.input.Action;
 import oneDayProjects.wuggle.input.ActionMap;
 import oneDayProjects.wuggle.input.InputButton;
+import oneDayProjects.wuggle.input.KeyMap;
 import structures.Trie;
 
 public class WUggle {
@@ -23,25 +25,23 @@ public class WUggle {
 	private InputButton button;
 	private ScoreKeeper scoreKeeper;
 	private WordList wordList;
-	private WordList answerList;
 	private Timer timer;
 	private ActionMap input;
+	private KeyMap keys;
 	private Screen screen;
 	private Trie<String> dictionary;
+	
+	private WordList answerList;
+	private ScoreKeeper totalPossible, total;
 
-	/**
-	 * A WUggle game
-	 * 
-	 * @param grid
-	 *            a 4x4 array of Strings. The string at row r, 0 <= r < 4 and column
-	 *            c, 0 <= c < 4 is stored at grid[r][c]
-	 */
 	public WUggle(Screen screen) {
 		this.screen = screen;
 		initDictionary();
 		this.input = new ActionMap(18);
+		this.keys = new KeyMap();
 		screen.addMouseListener(input);
 		screen.addMouseWheelListener(input);
+		screen.addKeyListener(keys);
 		initAll();
 		do {
 			screen.clear();
@@ -49,8 +49,10 @@ public class WUggle {
 			initAnswers();
 			if (answerList.maxScore() != 11 || answerList.size() < 80)
 				continue;
+			totalPossible.setScore(answerList.total());
 			break;
 		} while (true);
+		initDrawables();
 		initActions();
 		initTimer();
 	}
@@ -96,6 +98,17 @@ public class WUggle {
 		button = new InputButton();
 		scoreKeeper = new ScoreKeeper();
 		wordList = new WordList();
+		total = new ScoreKeeper("Total points: ");
+		totalPossible = new ScoreKeeper("Total possible: ");
+	}
+	
+	private void initDrawables() {
+		screen.add(button);
+		screen.add(scoreKeeper);
+		screen.add(wordList);
+		screen.add(answerList);
+		screen.add(total);
+		screen.add(totalPossible);
 	}
 	
 	private void initAnswers() {
@@ -127,15 +140,12 @@ public class WUggle {
 				}
 			});
 		}
-		d.add(button);
 		input.add(button.boundingBox(d), new Action() {
 			public void press() {
 				button.press();
 			}
 			public void release() {
-				submitWord(button.word());
-				button.release();
-				reset();
+				submit();
 			}
 			public void clear() {
 				button.clear();
@@ -144,8 +154,6 @@ public class WUggle {
 				return;
 			}
 		});
-		d.add(scoreKeeper);
-		d.add(wordList);
 		input.add(wordList.boundingBox(d), new Action() {
 			public void press() {
 				return;
@@ -160,12 +168,20 @@ public class WUggle {
 				wordList.scroll(units * 2);
 			}
 		});
+		keys.put(KeyEvent.VK_ENTER, () -> {
+			submit();
+		});
+	}
+	
+	private void submit() {
+		submitWord(button.word());
+		button.release();
+		reset();
 	}
 	
 	private void initEndActions() {
 		Drawer d = screen.drawer();
 		input.clear();
-		d.add(wordList);
 		input.add(wordList.boundingBox(d), new Action() {
 			public void press() {
 				return;
@@ -180,7 +196,6 @@ public class WUggle {
 				wordList.scroll(units * 2);
 			}
 		});
-		d.add(answerList);
 		input.add(answerList.boundingBox(d), new Action() {
 			public void press() {
 				return;
@@ -195,6 +210,7 @@ public class WUggle {
 				answerList.scroll(units * 2);
 			}
 		});
+		total.setScore(wordList.total());
 	}
 	
 	private void reset() {

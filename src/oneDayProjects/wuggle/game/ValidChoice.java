@@ -19,7 +19,12 @@ public class ValidChoice {
 			add(d);
 			return true;
 		}
+		
 		if (chain.contains(d)) {
+			if (chain.size() == 1) {
+				reset();
+				return true;
+			}
 			while (chain.getLast() != d) {
 				if (chain.getLast().val().equals("QU"))
 					word = word.substring(0, word.length() - 2);
