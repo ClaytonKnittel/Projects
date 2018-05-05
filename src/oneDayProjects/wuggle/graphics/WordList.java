@@ -19,6 +19,8 @@ public class WordList implements Drawable {
 	private final int border = 10;
 	private final int cushion = 4;
 	private final int wordSeparation = 4;
+	
+	private int wordHeight;
 
 	private LinkedList<WordScore> words;
 
@@ -66,7 +68,8 @@ public class WordList implements Drawable {
 	}
 
 	public void updateMaxScrollDist(int height, int textHeight) {
-		maxScrollDist = Math.max(words.size() * (textHeight + wordSeparation) - wordSeparation - height + 2 * cushion, 0);
+		wordHeight = textHeight + wordSeparation;
+		maxScrollDist = Math.max(words.size() * wordHeight - height + 2 * cushion, 0);
 	}
 
 	public boolean contains(String word) {
@@ -83,6 +86,10 @@ public class WordList implements Drawable {
 
 	public void add(String word, int score) {
 		words.add(new WordScore(word, score));
+		if (maxScrollDist > 0) {
+			if (scrollDist >= maxScrollDist - 3) 
+				wordHeight = maxScrollDist + wordHeight;
+		}
 	}
 
 	public Rectangle2D.Float boundingBox(Drawer drawer) {
@@ -118,7 +125,7 @@ public class WordList implements Drawable {
 		for (WordScore word : words) {
 			String sc = word.score + "";
 			Rectangle2D r = g.getFont().getStringBounds(sc, 0, sc.length(), f.getFontRenderContext());
-			int yPos = (int) (y + cushion + textHeight + i * (wordSeparation + textHeight) - scrollDist);
+			int yPos = (int) (y + cushion + textHeight + i * wordHeight - scrollDist - wordSeparation);
 			if (yPos < y + h + textHeight && yPos > y) {
 				g.setColor(wordColor);
 				g.drawBytes(word.val.getBytes(), 0, word.val.length(), x + cushion, yPos);
@@ -131,7 +138,7 @@ public class WordList implements Drawable {
 		g.setColor(Drawer.bgColor);
 		g.fillRect(xx, yy, ww, border);
 		g.fillRect(xx, yy, border, hh);
-		g.fillRect(xx, yy + hh - border, ww, border);
+		g.fillRect(xx, yy + hh - border, ww, border + 1);
 		g.fillRect(xx + ww - border, yy, border, hh);
 		g.setColor(bgColor);
 		g.fillRect(x, y, w, cushion);

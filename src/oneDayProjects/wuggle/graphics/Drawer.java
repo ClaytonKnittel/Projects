@@ -67,7 +67,7 @@ public class Drawer {
 		Graphics g = b.getDrawGraphics();
 		
 		g.setColor(bgColor);
-		g.fillRect(0, 0, w, h);
+		g.fillRect(0, Screen.topBorder, w, h);
 		g.setFont(Screen.font);
 		
 		for (Drawable d : objects)
