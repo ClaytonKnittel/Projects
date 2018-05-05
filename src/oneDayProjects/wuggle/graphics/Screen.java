@@ -14,7 +14,7 @@ public class Screen extends JFrame {
 	public static final Font font = new Font("Serif", Font.BOLD, 17);
 	
 	public Screen(int width, int height) {
-		this.setTitle("WUggle");
+		this.setTitle("Clayton's WUggle");
 		this.setSize(width, height);
 		this.setResizable(false);
 		this.setVisible(true);
