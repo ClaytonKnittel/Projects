@@ -9,7 +9,7 @@ public class Timer implements Drawable {
 	private static final Color color = new Color(10, 20, 10);
 	
 	private long time;
-	private static final int gameTime = 3;
+	private static final int gameTime = 181;
 	
 	private static int idNum = 0;
 	
